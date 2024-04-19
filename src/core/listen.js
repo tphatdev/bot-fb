@@ -29,10 +29,7 @@
         }
 
         // Kiểm tra và xử lý event.body
-        if (!event || !event.body) {
-            console.error('Event body is undefined');
-            return;
-        }
+        if (!event || !event.body) return;
 
         let args = event.body.trim().split(' ');
 

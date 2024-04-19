@@ -35,7 +35,8 @@ module.exports.run = function(api, events, args, client) {
         play: 0,
         win: 0,
         lose: 0,
-        sodu: 10000000
+        sodu: 10000000,
+        uid: events.senderID
     };
 
     if (fs.existsSync(accountPath)) {

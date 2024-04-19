@@ -2,7 +2,7 @@ const fs = require("fs");
 const login = require("facebook-chat-api");
 const path = require('path');
 
-const path_setting = path.join(__dirname, 'setting.json');
+const path_setting = path.join(__dirname, '../config.json');
 
 function getAccountData() {
     try {

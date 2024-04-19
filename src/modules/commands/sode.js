@@ -102,9 +102,9 @@ module.exports.run = function(api, events, args, client) {
         return;
     }
     else {
-        api.sendMessage(`GAME: Số đề\n[✚] Cược số: ${number}\n[✚] Số tiền cược: ${number_format(betAmount)}đ\n[✚] Số dư: ${userData.sodu !== undefined ? number_format(userData.sodu) : 'undefined'}đ\n[✚] Lượt chơi: ${userData.play}\n[✚] Sau 1 phút nữa sẽ có kết quả !`, events.threadID, events.messageID);
         userData.sodu -= betAmount;
         userData.play += 1;
+        api.sendMessage(`GAME: Số đề\n[✚] Cược số: ${number}\n[✚] Số tiền cược: ${number_format(betAmount)}đ\n[✚] Số dư: ${userData.sodu !== undefined ? number_format(userData.sodu) : 'undefined'}đ\n[✚] Lượt chơi: ${userData.play}\n[✚] Sau 1 phút nữa sẽ có kết quả !`, events.threadID, events.messageID);
         api.sendMessage({
             body: "Đang quay số...", 
             attachment: fs.createReadStream(__dirname + "/luutru/quay_sode.gif")
@@ -114,7 +114,7 @@ module.exports.run = function(api, events, args, client) {
         const result = laysocuoi(timestamp);
         if (number === result) {
             userData.sodu += betAmount * 11.5;
-            userData.win += 1; 
+            userData.win += 1;
             api.sendMessage({
                     body: `Thông báo kết quả lô đề:\n[✚] Player @${userData.name}\n(${format_date(timestamp)})\nTimestamp: ${timestamp}\nKết quả lấy được: ${result}\nCược số: ${number}\n- Số dư biến đổi: +${userData.sodu !== undefined ? number_format(Math.abs(betAmount * 11.5)) : 'undefined'}đ\n- Số dư: ${userData.sodu !== undefined ? number_format(userData.sodu) : 'undefined'}đ`,
                     mentions: [ { tag: userData.name, id: events.senderID } ],
